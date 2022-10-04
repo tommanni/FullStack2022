@@ -24,4 +24,4 @@ const paivienTyöTunnit = () => {
 
 }
 
-console.log(paivienTyöTunnit())
+paivienTyöTunnit()
