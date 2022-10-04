@@ -3,7 +3,7 @@ Tee ohjelma, joka tallentaa yhden viikon viikonpäivät ja niitä vastaavat työ
 taulukkoon. Voit keksiä päiville haluamasi työtunnit, rehellinen pitää kuitenkin olla. */
 
 const paivienTyöTunnit = () => {
-    paivat = [{ "paiva": "Maanantai", "tunnit": 11 }, { "paiva": "Tiistai", "tunnit": 7 }, { "paiva": "Keskiviikko", "tunnit": 8 }, { "paiva": "Torstai", "tunnit": 7 }, { "paiva": "Perjantai", "tunnit": 9 }, { "paiva": " Lauantai", "tunnit": 2 }, { "paiva": "Sunnuntai", "tunnit": 3 }]
+    const paivat = [{ "paiva": "Maanantai", "tunnit": 11 }, { "paiva": "Tiistai", "tunnit": 7 }, { "paiva": "Keskiviikko", "tunnit": 8 }, { "paiva": "Torstai", "tunnit": 7 }, { "paiva": "Perjantai", "tunnit": 9 }, { "paiva": " Lauantai", "tunnit": 2 }, { "paiva": "Sunnuntai", "tunnit": 3 }]
 
 
     /* Tehtävä 2.2
@@ -13,7 +13,9 @@ const paivienTyöTunnit = () => {
 
     //a)
     tuntiSumma = 0
-    paivat.forEach((paiva) => { tuntiSumma += paiva.tunnit })
+    for (const paiva of paivat) {
+        tuntiSumma += paiva.tunnit
+    }
     let tuntiKeskiarvo = tuntiSumma / paivat.length
     console.log("Tuntien keskiarvo forEachilla:", tuntiKeskiarvo)
 
@@ -42,3 +44,51 @@ const paivienTyöTunnit = () => {
 }
 
 paivienTyöTunnit();
+
+/* Tehtävä 2.4
+    Tee ohjelma, jonka lähtökohtana ovat 12 kuukauden palkkatulot kuukausittain.
+    Kuukausipalkkaa korotetaan 50 %:lla. Ohjelma luo uuden taulukon, josta löytyvät korotetut
+    palkat. */
+
+palkkaKertoja = (palkat) => {
+    return palkat.map(palkka => palkka * 1.50)
+}
+console.log("Kerrotut palkat:", palkkaKertoja([2000, 3500, 3300, 2600, 1900, 4500, 3000]))
+
+/* Tehtävä 2.5
+Tee ohjelma, jonka lähtökohtana ovat 12 kuukauden bruttopalkat kuukausittain ja
+veroprosentti. Ohjelma luo uuden taulukon ja laskee nettotulot vähentäen jokaisen
+kuukauden bruttopalkasta verot. */
+
+veroVähentäjä = (palkatJaVerot) => {
+    return palkatJaVerot.map(palkkaJaVero => palkkaJaVero.palkka *= (100 - palkkaJaVero.veroprosentti) / 100)
+}
+console.log("Nettotulot:", veroVähentäjä([{ "palkka": 3000, "veroprosentti": 30 }, { "palkka": 4000, "veroprosentti": 40 }, { "palkka": 2700, "veroprosentti": 27 }]))
+
+/* Tehtävä 2.6
+Tee ohjelma, joka järjestää taulukon luvut [1,4,100,2,5,4] suuruusjärjestykseen. Käytä
+JavaScriptin sort-funktiota oletustoteutuksella (ei omaa compare-funktiota) */
+
+taulukkoJärjestäjä = () => {
+    let taulukko = [1, 4, 100, 2, 5, 4]
+    return taulukko.sort()
+}
+console.log("Järjestetty:", taulukkoJärjestäjä())
+
+/* Tehtävä 2.7
+Tee ohjelma, joka järjestää taulukon merkkijonot [“1”,”4”,”100”,”2”,”5”,”4”]
+aakkosjärjestykseen. Käytä JavaScriptin sort-funktiota oletustoteutuksella (ei omaa
+compare-funktiota) */
+
+taulukkoJärjestäjä2 = () => {
+    let taulukko = ["1", "4", "100", "2", "5", "4"]
+    return taulukko.sort()
+}
+console.log("Järjestetty:", taulukkoJärjestäjä2())
+
+/* Tehtävä 2.8
+Selitä lyhyesti miten miten JavaScriptin sort-funktio toimii ja mitä tarkoittaa parametrina
+annettava compare-funktio. */
+
+//sort-funktio muuttaa taulukon arvot merkkijonoiksi ja järjestää ne vertaamalla niiden UTF-16 arvoja.
+//parametrina annettava compare-funktio määrittää järjestelyn järjestyksen, jos sitä ei anna, niin järjestys tehdään yllä mainitulla tavalla.
