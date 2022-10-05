@@ -92,3 +92,57 @@ annettava compare-funktio. */
 
 //sort-funktio muuttaa taulukon arvot merkkijonoiksi ja järjestää ne vertaamalla niiden UTF-16 arvoja.
 //parametrina annettava compare-funktio määrittää järjestelyn järjestyksen, jos sitä ei anna, niin järjestys tehdään yllä mainitulla tavalla.
+
+/* Tehtävä 2.9
+Sinulla on [{“ma”:44}, {“pe”:100}, {“ke”:21}, {“ti”: 66},{”la”:22}]. Luo taulukko, jossa taulukon
+objektit on järjestetty arvojen(values) mukaiseen järjestykseen. */
+
+const objektiJärjestäjä = () => {
+    const objektit = [{ "ma": 44 }, { "pe": 100 }, { "ke": 21 }, { "ti": 66 }, { "la": 22 }]
+    return objektit.sort((a, b) => Object.values(a) - Object.values(b))
+}
+console.log("Järjestettynä arvojen mukaan:", objektiJärjestäjä())
+
+/* Tehtävä 2.10
+Sinulla on [{“ma”:44}, {“pe”:100}, {“ke”:21}, {“ti”: 66},{”la”:22}]. Luo taulukko, jossa taulukon
+kentät on järjestetty päivien(avaimet) mukaiseen järjestykseen periaatteella
+ma&lt;ti&lt;ke&lt;to&lt;pe&lt;la&lt;su. */
+
+const objektiJärjestäjä2 = () => {
+    const objektit = [{ "ma": 44 }, { "pe": 100 }, { "ke": 21 }, { "ti": 66 }, { "la": 22 }]
+    const paivat = { 'ma': 1, 'ti': 2, 'ke': 3, 'to': 4, 'pe': 5, 'la': 6 }
+    return objektit.sort((a, b) => { return paivat[Object.keys(a)] - paivat[Object.keys(b)] })
+}
+console.log("Järjestettynä avainten mukaan:", objektiJärjestäjä2())
+
+/* Tehtävä 2.11
+Sinulla on [{“ma”:44}, {“pe”:100}, {“ke”:21}, {“ti”: 66},{”la”:22}]. Luo taulukko, jossa on
+mukana objektit, joissa on parillinen arvo. */
+
+const parillisetObjektit = () => {
+    const objektit = [{ "ma": 44 }, { "pe": 100 }, { "ke": 21 }, { "ti": 66 }, { "la": 22 }]
+    return objektit.filter((objekti) => Object.values(objekti)[0] % 2 === 0)
+}
+console.log("Parillisen arvon omaavat objektit:", parillisetObjektit())
+
+/* Tehtävä 2.12
+Sinulla on [{“ma”:44}, {“pe”:100}, {“ke”:21}, {“ti”: 66},{”la”:22}]. Luo taulukko, jossa on
+mukana objektit, joiden avaimen toinen kirjain on e. */
+
+const objektitJoissaE = () => {
+    const objektit = [{ "ma": 44 }, { "pe": 100 }, { "ke": 21 }, { "ti": 66 }, { "la": 22 }]
+    return objektit.filter((objekti) => Object.keys(objekti)[0][1] === "e")
+}
+console.log("Objektit, joiden avaimen toinen kirjain on e:", objektitJoissaE())
+
+/* Tehtävä 2.13
+Sinulla on {“ma”:44, “pe”:100, “ke”:21, “ti”: 66,”la”:22}. Tee ohjelma, joka muuttaa objektin
+listaksi niin, että [{“ma”:44},{“pe”:100},...]. Ohje: käytä esim. Objectin keys ja values -
+funktioita. */
+
+const objektiListaksi = () => {
+    const objekti = { "ma": 44, "pe": 100, "ke": 21, "ti": 66, "la": 22 }
+    return Object.keys(objekti).map((i) => ({ [i]: objekti[i] }))
+
+}
+console.log("Objekti listana:", objektiListaksi())
